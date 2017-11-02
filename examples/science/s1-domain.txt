@@ -1,0 +1,58 @@
+;; Particle Theory of Matter Domain
+
+(define (domain s1)
+   (:requirements :strips :typing)
+   (:types solid liquid gas null)
+
+   (:action select-initial-solid
+      :parameters (?o - solid)
+      :precondition (not (initial-state))
+      :effect (and (initial-state) (initial-object ?o))
+   )
+   (:action select-initial-liquid
+      :parameters (?o - liquid)
+      :precondition (not (initial-state))
+	  :effect (and (initial-state) (initial-object ?o))
+   )
+   (:action select-initial-gas
+      :parameters (?o - gas)
+      :precondition (not (initial-state))
+      :effect (and (initial-state) (initial-object ?o))
+   )
+   (:action select-change-melts
+      :parameters (?o - solid)
+      :precondition (and (initial-object ?o) (not (target-state-selected)))
+      :effect (and (target-state-liquid) (target-state-selected))
+   )
+   (:action select-change-heats
+      :parameters (?o - liquid)
+      :precondition (and (initial-object ?o) (not (target-state-selected)))
+      :effect (and (target-state-gas) (target-state-selected))
+   )
+   (:action select-change-cools
+      :parameters (?o - liquid)
+      :precondition (and (initial-object ?o) (not (target-state-selected)))
+      :effect (and (target-state-solid) (target-state-selected))
+   )
+   (:action select-change-condenses
+      :parameters (?o - gas)
+      :precondition (and (initial-object ?o) (not (target-state-selected)))
+      :effect (and (target-state-liquid) (target-state-selected))
+   )
+   (:action select-target-solid
+      :parameters (?o - null)
+      :precondition (target-state-solid)
+      :effect (target-state)
+   )
+   (:action select-target-liquid
+      :parameters (?o - null)
+      :precondition (target-state-liquid)
+	  :effect (target-state)
+   )
+   (:action select-target-gas
+      :parameters (?o - null)
+      :precondition (target-state-gas)
+      :effect (target-state)
+   )
+  
+)

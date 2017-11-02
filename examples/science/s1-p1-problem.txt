@@ -1,0 +1,21 @@
+;; Particle Theory of Matter Problem
+
+;; Select an initial state object
+;; Select an appropriate change operation
+;; Select a correct target state option
+;; Select three additional incorrect target states
+
+(define (problem p1)
+  (:domain s1) 
+
+  (:objects
+      stone crayon - solid
+      water - liquid
+      water0vapor - gas
+      nil - null
+  )
+
+  (:init (and (available stone) (available crayon) (available water) (available water0vapor) (available nil)))
+
+  (:goal (and (initial-state) (target-state) ))
+)
