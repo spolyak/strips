@@ -17,5 +17,5 @@
 
   (:init (and (available stone) (available crayon) (available water) (available water0vapor) (available nil)))
 
-  (:goal (and (initial-state) (target-state) ))
+  (:goal (and (initial-state-defined) (target-state-defined) (distractors-selected)))
 )

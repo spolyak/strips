@@ -6,18 +6,18 @@
 
    (:action select-initial-solid
       :parameters (?o - solid)
-      :precondition (not (initial-state))
-      :effect (and (initial-state) (initial-object ?o))
+      :precondition (not (initial-state-defined))
+      :effect (and (initial-state-defined) (initial-object ?o))
    )
    (:action select-initial-liquid
       :parameters (?o - liquid)
-      :precondition (not (initial-state))
-	  :effect (and (initial-state) (initial-object ?o))
+      :precondition (not (initial-state-defined)))
+	  :effect (and (initial-state-defined)) (initial-object ?o))
    )
    (:action select-initial-gas
       :parameters (?o - gas)
-      :precondition (not (initial-state))
-      :effect (and (initial-state) (initial-object ?o))
+      :precondition (not (initial-state-defined)))
+      :effect (and (initial-state-defined)) (initial-object ?o))
    )
    (:action select-change-melts
       :parameters (?o - solid)
@@ -42,17 +42,31 @@
    (:action select-target-solid
       :parameters (?o - null)
       :precondition (target-state-solid)
-      :effect (target-state)
+      :effect (target-state-defined)
    )
    (:action select-target-liquid
       :parameters (?o - null)
       :precondition (target-state-liquid)
-	  :effect (target-state)
+	  :effect (target-state-defined)
    )
    (:action select-target-gas
       :parameters (?o - null)
       :precondition (target-state-gas)
-      :effect (target-state)
+      :effect (target-state-defined)
    )
-  
+   (:action select-distrators-liquid-gas-plasma
+      :parameters (?o - null)
+      :precondition (and (target-state-defined) (target-state-solid) (not (distractors-selected)))
+      :effect (distractors-selected)
+   )
+   (:action select-distrators-solid-gas-plasma
+      :parameters (?o - null)
+      :precondition (and (target-state-defined) (target-state-liquid) (not (distractors-selected)))
+      :effect (distractors-selected)
+   )
+   (:action select-distrators-liquid-solid-plasma
+      :parameters (?o - null)
+      :precondition (target-state-defined) (and (target-state-gas) (not (distractors-selected)))
+      :effect (distractors-selected)
+   )
 )
